@@ -1,0 +1,45 @@
+
+#app {
+	display: flex;
+	justify-content: space-between;
+}
+.ewqe {
+	background-color: red;
+	position: relative;
+	width: 45%;
+}
+.modal {
+	background-color: red;
+	position: absolute;
+	height: 300px;
+	width: 300px;
+	top: 100%;
+	left: 0;
+}
+input {
+	pointer-events: none;
+}
+
+div input {
+        background-color: #f72540;
+        background-color: var(--red);
+    }
+
+:root {
+	--red: #f72540;
+	--black: #000;
+}
+
+p {
+	color: rgb(247, 37, 64);
+	color: rgb(247, 37, 64);
+}
+
+@media (max-width: 599px) {
+
+p {
+		color: #f72540;
+		color: var(--red)
+}
+	}
+
