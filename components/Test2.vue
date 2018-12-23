@@ -1,6 +1,7 @@
 <template>
     <div>
-        <input type="text" @input="$emit('input', $event.target.value)" :value="value">
+        Test2
+        <router-view></router-view>
     </div>
 </template>
 
