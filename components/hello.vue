@@ -7,7 +7,7 @@
 		<router-link to="/next/foo">Перейти к foo</router-link>
 		<router-link to="/next/bar">Перейти к bar</router-link>
 		<div @click="$router.push('/next/foo')">foo</div>
-		<div @click="$router.push({ name: 'name', params: { userId: 123 }})">bar</div>
+		<div @click="$router.push({ name: 'name', params: { id: 123 }})">bar</div>
 	</div>
 </template>
 

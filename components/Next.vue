@@ -1,6 +1,6 @@
 <template>
 	<div>
-        4654654656 {{ $route.params.id }} 46565464
+        <div v-if="id">4654654656 {{ id }} 46565464</div>
 		<router-view></router-view>
 		<router-view name="one"></router-view>
 		<router-view name="two"></router-view>
@@ -9,6 +9,7 @@
 
 <script>
 	export default {
+	  props: ['id', 'query'],
 	  data () {
 	    return {
 				text: 'lorem...',
@@ -18,7 +19,10 @@
 	    }
 		},
 		created() {
-			console.log( this.$route );
+			console.log( this.$route.params, this.query ? this.query : false, this.id );
+			if(this.id) {
+				console.log( this.id );
+			}
 		},
 		beforeRouteUpdate (to, from, next) {
 			console.log( this.$router );

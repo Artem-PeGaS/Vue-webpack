@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const routes = [
 	{
-		path: '/next/:id', component: Next,
+		path: '/next/:id', component: Next, props: (route) => ({ id: route.params.id, query: 666 }),
 		children: [
 			{
 				path: '',
@@ -31,7 +31,7 @@ const routes = [
 			}
 		]
 	},
-	{ path: '/user-i/:userId', name: 'name', component: Next },
+	{ path: '/user-i/:id', name: 'name', components: { default: Next }, props: { default: true } },
 	{
 		path: '/user-*', component: Next,
 		children: [
