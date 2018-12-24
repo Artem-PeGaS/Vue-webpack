@@ -31,9 +31,9 @@ const routes = [
 			}
 		]
 	},
-	{ path: '/user-i/:id', name: 'name', components: { default: Next }, props: { default: true } },
+	{ path: '/user-i/:id', name: 'name', components: { default: Next }, props: { default: {query: 6688} } },
 	{
-		path: '/user-*', component: Next,
+		path: '/user-*', component: Next, props: true,
 		children: [
 			{
 				path: 'several', components: {
