@@ -24,9 +24,22 @@
 				console.log( this.id );
 			}
 		},
+		beforeRouteEnter (to, from, next) {
+			alert('3. beforeRouteEnter');
+			next()
+  		},
 		beforeRouteUpdate (to, from, next) {
 			console.log( this.$router );
+			alert('beforeRouteUpdate');
 			next();
+  		},
+		beforeRouteLeave (to, from, next) {
+			const answer = window.confirm('Вы хотите уйти? У вас есть несохранённые изменения!')
+			if (answer) {
+				next()
+			} else {
+				next(false)
+			}
 		}
 	}
 </script>

@@ -10,6 +10,10 @@ Vue.use(VueRouter);
 const routes = [
 	{
 		path: '/next/:id', component: Next, props: (route) => ({ id: route.params.id, query: 666 }),
+		beforeEnter: (to, from, next) => {
+			alert('2. beforeEnter');
+			next();
+		},
 		children: [
 			{
 				path: '',
@@ -56,6 +60,20 @@ const routes = [
 
 const router = new VueRouter({
 	routes: routes
+});
+
+router.beforeEach((to, from, next) => {
+	alert('1. beforeEach');
+	next();
+});
+
+router.beforeResolve((to, from, next) => {
+	alert('4. beforeResolve');
+	next();
+});
+
+router.afterEach((to, from) => {
+	alert('5. afterEach');
 });
 
 //|-- variables --|\\
