@@ -11,23 +11,25 @@ const routes = [
 	{
 		path: '/next/:id', component: Next, props: (route) => ({ id: route.params.id, query: 666 }),
 		beforeEnter: (to, from, next) => {
-			alert('2. beforeEnter');
+			console.log('2. beforeEnter');
 			next();
 		},
 		children: [
 			{
 				path: '',
-				component: Test
+				component: Test2
 			},
 			{
 				path: 'test',
 				component: Test2,
-					children: [
-						{
-							path: '',
-							component: Test2
-						}
-					]
+				meta: { requiresAuth: true },
+					// children: [
+					// 	{
+					// 		path: '',
+					// 		component: Test2,
+					// 		meta: { requiresAuth: true }
+					// 	}
+					// ]
 			},
 			{
 				path: 'test2',
@@ -63,17 +65,17 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-	alert('1. beforeEach');
+	console.log('1. beforeEach');
 	next();
 });
 
 router.beforeResolve((to, from, next) => {
-	alert('4. beforeResolve');
+	console.log('4. beforeResolve');
 	next();
 });
 
 router.afterEach((to, from) => {
-	alert('5. afterEach');
+	console.log('5. afterEach');
 });
 
 //|-- variables --|\\

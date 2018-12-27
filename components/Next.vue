@@ -1,9 +1,9 @@
 <template>
 	<div>
         <div>4654654656 {{ id }} 46565464</div>
-		<router-view></router-view>
-		<router-view name="one"></router-view>
-		<router-view name="two"></router-view>
+		<transition :name="transitionName">
+			<router-view :key="transitionName"></router-view>
+		</transition>
 	</div>
 </template>
 
@@ -15,7 +15,8 @@
 				text: 'lorem...',
 				is: false,
 				y: '',
-				m: ''
+				m: '',
+				transitionName: ''
 	    }
 		},
 		created() {
@@ -24,13 +25,21 @@
 				console.log( this.id );
 			}
 		},
+		watch: {
+			'$route' (to, from) {
+				console.log(this.transitionName);
+				const toDepth = to.path.split('/').length
+				const fromDepth = from.path.split('/').length
+				this.transitionName = toDepth < fromDepth ? 'fade' : 'fade2'
+			}
+		},
 		beforeRouteEnter (to, from, next) {
-			alert('3. beforeRouteEnter');
+			console.log('3. beforeRouteEnter');
 			next()
   		},
 		beforeRouteUpdate (to, from, next) {
 			console.log( this.$router );
-			alert('beforeRouteUpdate');
+			console.log('beforeRouteUpdate');
 			next();
   		},
 		beforeRouteLeave (to, from, next) {
@@ -43,3 +52,19 @@
 		}
 	}
 </script>
+
+<style>
+	.fade2-enter-active, .fade2-leave-active {
+		transition: opacity 10s;
+	}
+	.fade2-enter, .fade2-leave-to {
+		opacity: 0;
+	}
+
+	.fade-enter-active, .fade-leave-active {
+		transition: opacity 1s;
+	}
+	.fade-enter, .fade-leave-to {
+		opacity: 0;
+	}
+</style>

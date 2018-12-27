@@ -1,7 +1,9 @@
 <template>
-    <div>
+
+    <transition name="fade1">
         <input type="text" @input="$emit('input', $event.target.value)" :value="value">
-    </div>
+    </transition>
+
 </template>
 
 
@@ -13,3 +15,6 @@
 		},
     }
 </script>
+
+<style>
+</style>
