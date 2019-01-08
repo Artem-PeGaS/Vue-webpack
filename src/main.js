@@ -4,6 +4,7 @@ import Next from '../components/Next.vue'
 import Test from '../components/Test.vue'
 import Test2 from '../components/Test2.vue'
 import VueRouter from 'vue-router'
+import store from '../store/store.js'
 
 Vue.use(VueRouter);
 
@@ -21,7 +22,7 @@ const routes = [
 			},
 			{
 				path: 'test',
-				component: Test2,
+				component: Test,
 				meta: { requiresAuth: true },
 					// children: [
 					// 	{
@@ -61,7 +62,17 @@ const routes = [
 ];
 
 const router = new VueRouter({
-	routes: routes
+	routes: routes,
+	scrollBehavior(to, from, savedPosition) {
+		// return to.path === '/next/bar/test2'
+		// ? { x: 0, y: 500 }
+		// : { x: 0, y: 10 }
+		return new Promise((resolve, reject) => {
+			setTimeout(() => {
+			  resolve({ x: 0, y: 0 })
+			}, 1500)
+		})
+	}
 });
 
 router.beforeEach((to, from, next) => {
@@ -85,12 +96,11 @@ Vue.prototype.rr = 5;
 
 new Vue({
 	pff2: 5,
+	store,
 	router: router,
 	el: '#app',
-	components: {
-		hello
-	},
+	render: h => h(hello),
 	created() {
-		console.log( this.$router );
+		console.log( this.$store.getters.doneTodos );
 	}
 });

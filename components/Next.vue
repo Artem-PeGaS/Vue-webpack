@@ -42,27 +42,27 @@
 			console.log('beforeRouteUpdate');
 			next();
   		},
-		beforeRouteLeave (to, from, next) {
-			const answer = window.confirm('Вы хотите уйти? У вас есть несохранённые изменения!')
-			if (answer) {
-				next()
-			} else {
-				next(false)
-			}
-		}
+		// beforeRouteLeave (to, from, next) {
+		// 	const answer = window.confirm('Вы хотите уйти? У вас есть несохранённые изменения!')
+		// 	if (answer) {
+		// 		next()
+		// 	} else {
+		// 		next(false)
+		// 	}
+		// }
 	}
 </script>
 
 <style>
 	.fade2-enter-active, .fade2-leave-active {
-		transition: opacity 10s;
+		transition: opacity .5;
 	}
 	.fade2-enter, .fade2-leave-to {
 		opacity: 0;
 	}
 
 	.fade-enter-active, .fade-leave-active {
-		transition: opacity 1s;
+		transition: opacity .2;
 	}
 	.fade-enter, .fade-leave-to {
 		opacity: 0;

@@ -5,7 +5,8 @@
   "license": "MIT",
   "dependencies": {
     "vue": "^2.5.17",
-    "vue-router": "^3.0.2"
+    "vue-router": "^3.0.2",
+    "vuex": "^3.0.1"
   },
   "scripts": {
     "dev": "set NODE_ENV=development&&webpack-dev-server",

@@ -1,7 +1,9 @@
 <template>
 
     <transition name="fade1">
-        <input type="text" @input="$emit('input', $event.target.value)" :value="value">
+        <div class="height">
+            <input type="text" @input="$emit('input', $event.target.value)" :value="value">
+        </div>
     </transition>
 
 </template>

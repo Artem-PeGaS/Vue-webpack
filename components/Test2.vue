@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="height" id="w">
         Test2
         <router-view></router-view>
     </div>
@@ -14,3 +14,9 @@
 		},
     }
 </script>
+
+<style>
+    .height {
+        height: 1000px;
+    }
+</style>

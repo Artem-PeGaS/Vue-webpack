@@ -1,33 +1,61 @@
 <template>
 	<div class="main-carousel">
-		<Test v-model="text"/>
+	
+		<div class="">{{ Y }}</div>
+		<div class="">{{ nameA }}</div>
+		<div class="">{{ nameB }}</div>
+		<hr></hr>
 		<div class="carousel-cell">{{ text }}</div>
-		<div class="carousel-cell">2</div>
-		<div class="carousel-cell">3</div>
-		<router-link to="/next/foo">Перейти к foo</router-link>
-		<router-link to="/next/bar">Перейти к bar</router-link>
-		<div @click="$router.push('/next/foo')">foo</div>
+		<div class="carousel-cell">{{ count }}</div>
+		<div class="carousel-cell">{{ doneTodos }}</div>
+		<router-link to="/next/foo" exact>Перейти к foo</router-link>
+		<router-link to="/next/bar/test2" exact>Перейти к bar</router-link>
+		<div @click="$router.push('/next/bar/test')">next/bar/test</div>
 		<div @click="$router.push({ name: 'name', params: { id: 123 }})">bar</div>
 	</div>
 </template>
 
 <script>
 	import Test from './Test.vue'
+	import { mapState, mapGetters, mapMutations, mapActions } from 'vuex'
 
 	export default {
 	  components: {
 	  	Test
 	  },
 	  data () {
-	    return {
+			return {
 				text: 'lorem...',
 				is: false,
 				y: '',
 				m: ''
-	    }
+			}
+		},
+		methods: {
+			...mapActions({
+				increment: 'increment',
+				getReState: 'moduleB/getReState'
+			})
+		},
+		computed: {
+			...mapState({
+				count: 'count',
+				Y: state => state.myModule.y,
+				moduleA: state => state.moduleA,
+				nameA: state => state.moduleA.name,
+				nameB: state => state.moduleB.v2
+			}),
+			...mapGetters([
+				'doneTodos'
+			])
 		},
 		created() {
-			
+			this.getReState();
+			this.increment({ a: 4 });
+		},
+		watch: {
+			doneTodos() {
+			}
 		}
 	}
 </script>
@@ -55,9 +83,5 @@
 		width: 300px;
 		top: 100%;
 		left: 0;
-	}
-
-	input {
-		pointer-events: none;
 	}
 </style>
